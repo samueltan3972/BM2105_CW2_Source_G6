@@ -57,14 +57,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public User getUser(long id) {
+
+    public User getUser(String username) {
         // get readable database as we are not inserting anything
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(User.TABLE_NAME,
                 new String[]{User.COLUMN_ID, User.COLUMN_NAME, User.COLUMN_CONTACT_NUM, User.COLUMN_PASSWORD},
-                User.COLUMN_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
+                User.COLUMN_NAME + "=?",
+                new String[]{String.valueOf(username)}, null, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();

@@ -2,10 +2,13 @@ package example.bm2105_cw2_source_g6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import example.bm2105_cw2_source_g6.database.DatabaseHelper;
 
 public class Register extends AppCompatActivity {
 
@@ -13,6 +16,9 @@ public class Register extends AppCompatActivity {
     private EditText musernameReg;
     private EditText mcontactReg;
     private Button msubmitofReg;
+    private DatabaseHelper databaseHelper;
+    private Validation validate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +28,17 @@ public class Register extends AppCompatActivity {
         musernameReg =(EditText)findViewById(R.id.username1);
         mcontactReg = (EditText) findViewById(R.id.contact);
         msubmitofReg = (Button) findViewById(R.id.btnsubmitofregister);
+
+
+
+
     }
 
     public void submitofRegister(View view) {
+
+        validate.InputDataofResgister(musernameReg,
+                mpasswordReg,mcontactReg);
+
+        this.finish();
     }
 }

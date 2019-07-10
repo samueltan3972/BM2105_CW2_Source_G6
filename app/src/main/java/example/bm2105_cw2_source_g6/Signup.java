@@ -13,6 +13,7 @@ public class Signup extends AppCompatActivity {
     private EditText mpassword;
     private EditText musername;
     private Button msubmitofSign;
+    private Validation validation;
 
 
     @Override
@@ -27,5 +28,7 @@ public class Signup extends AppCompatActivity {
     }
 
     public void submit(View view) {
+        validation.validateLogin(musername,mpassword);
+
     }
 }
