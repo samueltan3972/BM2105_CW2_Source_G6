@@ -1,6 +1,9 @@
 package example.bm2105_cw2_source_g6.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -32,5 +35,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Create tables again
         onCreate(db);
+    }
+
+    public long insertUser(String username, String contact_num, String password) throws SQLException {
+        // get writable database as we want to write data
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(User.COLUMN_NAME, username);
+        values.put(User.COLUMN_CONTACT_NUM, contact_num);
+        values.put(User.COLUMN_PASSWORD, password);
+
+        // insert row
+        long id = db.insertOrThrow(User.TABLE_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
+
+    public User getUser(long id) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(User.TABLE_NAME,
+                new String[]{User.COLUMN_ID, User.COLUMN_NAME, User.COLUMN_CONTACT_NUM, User.COLUMN_PASSWORD},
+                User.COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // prepare note object
+        User user = new User(
+                cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)),
+                cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)),
+                cursor.getString(cursor.getColumnIndex(User.COLUMN_CONTACT_NUM)),
+                cursor.getString(cursor.getColumnIndex(User.COLUMN_PASSWORD)));
+
+        // close the db connection
+        cursor.close();
+
+        return user;
     }
 }

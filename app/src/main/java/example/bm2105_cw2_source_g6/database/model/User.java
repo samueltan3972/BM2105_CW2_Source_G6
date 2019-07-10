@@ -3,10 +3,12 @@ package example.bm2105_cw2_source_g6.database.model;
 public class User {
     public static final String TABLE_NAME = "user";
 
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "username";
     public static final String COLUMN_CONTACT_NUM = "contact_number";
     public static final String COLUMN_PASSWORD = "password";
 
+    private int id;
     private String username;
     private String contact_number;
     private String password;
@@ -15,7 +17,8 @@ public class User {
     // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
-                    + COLUMN_NAME + " TEXT PRIMARY KEY,"
+                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_NAME + " TEXT UNIQUE,"
                     + COLUMN_CONTACT_NUM + " TEXT,"
                     + COLUMN_PASSWORD + " TEXT"
                     + ")";
@@ -23,10 +26,15 @@ public class User {
     public User() {
     }
 
-    public User(String username, String contact_number, String password) {
+    public User(int id, String username, String contact_number, String password) {
+        this.id = id;
         this.username = username;
         this.contact_number = contact_number;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUserName() {
@@ -39,6 +47,14 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public void setContactNum(String contact_number) {

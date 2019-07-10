@@ -42,8 +42,8 @@
             android:textColor="@color/white"
             app:buttonColor="@color/green"
             android:onClick="signup"
-
             />
+
         <info.hoang8f.widget.FButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"

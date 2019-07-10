@@ -7,4 +7,6 @@
     <color name="lgreen">#00ff26</color>
     <color name="green">#78f08a</color>
 
+    <color name="overlayBackground">#7f333639</color>
+    <color name="overlayActionBar">#0e0d0e</color>
 </resources>
