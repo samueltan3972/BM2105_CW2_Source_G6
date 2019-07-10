@@ -39,6 +39,7 @@ public class Register extends AppCompatActivity {
         validate.InputDataofResgister(musernameReg,
                 mpasswordReg,mcontactReg);
 
-        this.finish();
+        Intent intent = new Intent(this, Signup.class);
+        startActivity(intent);
     }
 }

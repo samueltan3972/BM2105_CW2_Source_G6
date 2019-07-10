@@ -39,7 +39,8 @@ public class Validation {
             } else {
                 if (user == userObject.getUserName() &&
                         passwords == userObject.getPassword()) {
-                    Common.currentUser = user
+                    Common.currentUser = userObject;
+
                     return true;
                 } else {
                     return false;
