@@ -20,16 +20,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
+
+import example.bm2105_cw2_source_g6.Common.Common;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView txtFullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
+
+        
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +56,12 @@ public class Home extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        // Set Name for user
+        View headerView = navigationView.getHeaderView(0);
+        txtFullName = (TextView) findViewById(R.id.txtFullName);
+        txtFullName.setText(Common.currentUser.getUserName());
     }
 
     @Override
