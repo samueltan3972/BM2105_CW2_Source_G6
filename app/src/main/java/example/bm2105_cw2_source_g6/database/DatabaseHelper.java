@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertUser(String username, String contact_num, String password) throws SQLException {
+    public long insertUser(String username, String contact_num, String password) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(User.COLUMN_PASSWORD, password);
 
         // insert row
-        long id = db.insertOrThrow(User.TABLE_NAME, null, values);
+        long id = db.insert(User.TABLE_NAME, null, values);
 
         // close db connection
         db.close();

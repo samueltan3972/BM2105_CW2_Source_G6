@@ -41,17 +41,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            android:id="@+id/username1"
             android:textColorHint="@color/white"
-            app:errorTextColor="@color/white"
             app:counterTextColor="@color/white"
+            app:errorTextColor="@color/white"
 
 
             >
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:id="@+id/username1"
 
                 />
 
@@ -61,12 +62,13 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:textColorHint="@color/white"
-            android:id="@+id/password1"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:id="@+id/password1"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -76,12 +78,12 @@
             android:layout_height="wrap_content"
             android:hint="Contact"
             android:textColorHint="@color/white"
-            android:id="@+id/contact"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:id="@+id/contact"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

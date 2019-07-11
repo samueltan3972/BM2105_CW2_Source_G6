@@ -1,7 +1,9 @@
 package example.bm2105_cw2_source_g6;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import example.bm2105_cw2_source_g6.Common.Common;
 import example.bm2105_cw2_source_g6.database.DatabaseHelper;
@@ -14,33 +16,38 @@ public class Validation {
 
     public Validation(Context context) {
         this.context = context;
+        databaseHelper = new DatabaseHelper(context);
     }
 
-    public void InputDataofResgister(EditText username,
-                              EditText password, EditText contact){
-        String user =  username.getText().toString().trim();
-        String passwords =  password.getText().toString().trim();
-        String contacts =  contact.getText().toString().trim();
+    public boolean InputDataofResgister(String username,
+                                        String password, String contact){
 
-        databaseHelper.insertUser(user,passwords,contacts);
+
+
+       long id = databaseHelper.insertUser(username, password, contact);
+
+       if(id == -1){
+           return false;
+       }
+
+       return true;
 
     }
 
-    public boolean validateLogin(EditText username, EditText password) {
-        String user = username.getText().toString().trim();
-        String passwords = password.getText().toString().trim();
-        User userObject = databaseHelper.getUser(user);
-        if (user.isEmpty() || passwords.isEmpty()) {
+    public boolean validateLogin(String username, String password) {
+
+        User userObject = databaseHelper.getUser(username);
+
+        if (username.isEmpty() || password.isEmpty()) {
             return false;
         } else {
-            if (userObject.getUserName() == null ||
-                    userObject.getPassword() == null) {
+            if (userObject.getUserName().isEmpty() ||
+                    userObject.getPassword().isEmpty()) {
                 return false;
             } else {
-                if (user == userObject.getUserName() &&
-                        passwords == userObject.getPassword()) {
+                if (username.equals(userObject.getUserName()) &&
+                        password.equals(userObject.getPassword())) {
                     Common.currentUser = userObject;
-
                     return true;
                 } else {
                     return false;

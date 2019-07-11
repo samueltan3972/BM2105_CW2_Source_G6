@@ -42,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-            android:id="@+id/username"
         android:textColorHint="@color/white"
         app:errorTextColor="@color/white"
         app:counterTextColor="@color/white"
@@ -53,6 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:id="@+id/username"
+
 
             />
 
@@ -62,12 +63,14 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:textColorHint="@color/white"
-            android:id="@+id/password"
+
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:id="@+id/password"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
