@@ -1,5 +1,8 @@
 package example.bm2105_cw2_source_g6;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,12 +10,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -44,7 +49,6 @@ public class Home extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +68,7 @@ public class Home extends AppCompatActivity
 
         // Set Name for user
         View headerView = navigationView.getHeaderView(0);
-        txtFullName = (TextView) findViewById(R.id.txtFullName);
+        txtFullName = (TextView) headerView.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getUserName());
     }
 
@@ -107,17 +111,54 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_menu) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_cart) {
 
         } else if (id == R.id.nav_orders) {
 
-        } else if (id == R.id.nav_log_out) {
+        } else if(id == R.id.nav_edit_profile) {
 
+        } else if (id == R.id.nav_log_out) {
+            logout();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logout(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Are you sure you want to log out?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Remove the session and log user out
+                        SharedPreferences mPrefs = getSharedPreferences(Validation.SESSION_NAME, MODE_PRIVATE);
+                        mPrefs.edit().remove(Validation.SESSION_NAME).apply();
+
+                        Common.currentUser = null;
+
+                        Intent intent = new Intent(Home.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                        dialog.cancel();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }

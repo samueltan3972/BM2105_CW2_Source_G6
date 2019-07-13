@@ -36,6 +36,7 @@ public class Signin extends AppCompatActivity {
         if(validation.validateLogin(user,passwords)){
             Intent intent = new Intent(this, Home.class);
             startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "Invalid username " +
                     "/ password", Toast.LENGTH_SHORT).show();
