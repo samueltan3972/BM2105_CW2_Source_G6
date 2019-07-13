@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import example.bm2105_cw2_source_g6.Common.Common;
 import example.bm2105_cw2_source_g6.database.model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -90,4 +91,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return user;
     }
+
+    public void EditContact( String contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String strSQL = "UPDATE myTable SET COLUMN_CONTACT_NUM ="+ contact +
+                "WHERE COLUMN_NAME  = "+ Common.currentUser.getUserName();
+
+        db.execSQL(strSQL);
+
+    }
+
+    
 }

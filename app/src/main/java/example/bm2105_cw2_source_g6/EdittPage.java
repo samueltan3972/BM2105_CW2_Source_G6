@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import example.bm2105_cw2_source_g6.Common.Common;
 import example.bm2105_cw2_source_g6.database.DatabaseHelper;
 
 public class EdittPage extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class EdittPage extends AppCompatActivity {
         mSubmitPersonal.setEnabled(false);
         mEditContact.setEnabled(false);
         mEditUsername.setEnabled(false);
+        mEditPersonal.setText(Common.currentUser.getUserName());
+        mEditContact.setText(Common.currentUser.getContactNum());
 
 
 
@@ -43,6 +46,8 @@ public class EdittPage extends AppCompatActivity {
     }
 
     public void Submit(View view) {
+        String contact = mEditContact.getText().toString();
+        databaseHelper.EditContact(contact);
         mSubmitPersonal.setEnabled(false);
         mEditContact.setEnabled(false);
     }
