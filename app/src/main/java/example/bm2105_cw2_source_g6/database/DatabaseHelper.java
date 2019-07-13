@@ -72,12 +72,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        // prepare note object
-        User user = new User(
-                cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)),
-                cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)),
-                cursor.getString(cursor.getColumnIndex(User.COLUMN_CONTACT_NUM)),
-                cursor.getString(cursor.getColumnIndex(User.COLUMN_PASSWORD)));
+        User user;
+
+        try {
+            // prepare note object
+            user = new User(
+                    cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)),
+                    cursor.getString(cursor.getColumnIndex(User.COLUMN_CONTACT_NUM)),
+                    cursor.getString(cursor.getColumnIndex(User.COLUMN_PASSWORD)));
+        } catch (Exception e){
+            user = new User();
+        }
 
         // close the db connection
         cursor.close();

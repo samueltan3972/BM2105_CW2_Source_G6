@@ -27,6 +27,10 @@ public class User {
                     + ")";
 
     public User() {
+        this.id = 0;
+        this.username = "";
+        this.contact_number = "";
+        this.password = "";
     }
 
     public User(int id, String username, String contact_number, String password) {
