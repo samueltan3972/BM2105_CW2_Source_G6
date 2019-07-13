@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".EdittPage"></activity>
         <activity android:name=".Register" />
-        <activity android:name=".Signup"></activity>
+        <activity android:name=".Signin"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

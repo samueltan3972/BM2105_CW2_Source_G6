@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRegister = (Button)findViewById(R.id.btnReg);
-        msignup = (Button)findViewById(R.id.btnSignup);
+        msignup = (Button)findViewById(R.id.btnSignin);
     }
 
     public void register(View view) {
@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void signup(View view) {
+    public void signin(View view) {
         Intent intent = new Intent(this,
-                Signup.class);
+                Signin.class);
         startActivity(intent);
     }
 
