@@ -30,14 +30,15 @@ public class Signup extends AppCompatActivity {
     }
 
     public void submit(View view) {
-        String user = musername.getText().toString().trim();
-        String passwords = mpassword.getText().toString().trim();
+        String user = musername.getText().toString();
+        String passwords = mpassword.getText().toString();
 
         if(validation.validateLogin(user,passwords)){
-            Intent intent = new Intent(this, Home.class);
+            Intent intent = new Intent(this, EdittPage.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Invalid username / password", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Invalid username " +
+//                    "/ password", Toast.LENGTH_SHORT).show();
         }
 
 

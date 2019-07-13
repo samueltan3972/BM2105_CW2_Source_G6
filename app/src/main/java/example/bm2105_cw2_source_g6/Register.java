@@ -37,9 +37,11 @@ public class Register extends AppCompatActivity {
     }
 
     public void submitofRegister(View view) {
-        String user =  musernameReg.getText().toString().trim();
-        String passwords =  mpasswordReg.getText().toString().trim();
-        String contacts =  mcontactReg.getText().toString().trim();
+        String user =  musernameReg.getText().toString();
+        String passwords =  mpasswordReg.getText().toString();
+        String contacts =  mcontactReg.getText().toString();
+
+
 
         if(user.isEmpty()|| passwords.isEmpty()|| contacts.isEmpty()) {
             Toast.makeText(this,
@@ -52,6 +54,7 @@ public class Register extends AppCompatActivity {
                 passwords,contacts)){
             Intent intent = new Intent(this, Signup.class);
             startActivity(intent);
+
         } else {
             Toast.makeText(this, "Username has been taken", Toast.LENGTH_SHORT).show();
         }

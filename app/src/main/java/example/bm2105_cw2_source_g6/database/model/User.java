@@ -1,5 +1,8 @@
 package example.bm2105_cw2_source_g6.database.model;
 
+import android.util.Log;
+import android.widget.Toast;
+
 public class User {
     public static final String TABLE_NAME = "user";
 

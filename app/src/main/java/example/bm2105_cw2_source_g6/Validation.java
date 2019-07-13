@@ -22,9 +22,8 @@ public class Validation {
     public boolean InputDataofResgister(String username,
                                         String password, String contact){
 
+       long id = databaseHelper.insertUser(username, contact,password);
 
-
-       long id = databaseHelper.insertUser(username, password, contact);
 
        if(id == -1){
            return false;
@@ -47,9 +46,11 @@ public class Validation {
             } else {
                 if (username.equals(userObject.getUserName()) &&
                         password.equals(userObject.getPassword())) {
+
                     Common.currentUser = userObject;
                     return true;
                 } else {
+                    Toast.makeText(context, userObject.getPassword(), Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }
