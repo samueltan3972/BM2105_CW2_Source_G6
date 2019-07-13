@@ -26,16 +26,16 @@ public class Validation {
     }
 
     public boolean InputDataofResgister(String username,
-                                        String password, String contact){
+                                        String password, String contact) {
 
-       long id = databaseHelper.insertUser(username, contact,password);
+        long id = databaseHelper.insertUser(username, contact, password);
 
 
-       if(id == -1){
-           return false;
-       }
+        if (id == -1) {
+            return false;
+        }
 
-       return true;
+        return true;
 
     }
 
@@ -71,6 +71,29 @@ public class Validation {
             }
 
 
+        }
+    }
+
+    public boolean changeContact( String contact) {
+        if(contact.isEmpty()){
+            return false;
+        }else {
+            databaseHelper.EditContact(contact);
+            User userObject =
+                    databaseHelper.getUser(Common.currentUser.getUserName());
+            Common.currentUser = userObject;
+
+            // Save the user object to shared preference, act like session
+            SharedPreferences mPrefs =
+                    context.getSharedPreferences(SESSION_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+
+            Gson gson = new Gson();
+            String json = gson.toJson(userObject);
+            prefsEditor.putString("userObject", json);
+            prefsEditor.commit();
+
+            return true;
         }
     }
 

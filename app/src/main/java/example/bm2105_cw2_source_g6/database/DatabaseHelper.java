@@ -94,9 +94,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void EditContact( String contact){
         SQLiteDatabase db = this.getWritableDatabase();
-        String strSQL = "UPDATE myTable SET COLUMN_CONTACT_NUM ="+ contact +
-                "WHERE COLUMN_NAME  = "+ Common.currentUser.getUserName();
 
+        String strSQL = "UPDATE " + User.TABLE_NAME + " SET "+
+                User.COLUMN_CONTACT_NUM +" = '"+ contact +
+                "' WHERE " + User.COLUMN_ID + " = "+ Common.currentUser.getId();
+
+        Log.e("String",strSQL);
         db.execSQL(strSQL);
 
     }
