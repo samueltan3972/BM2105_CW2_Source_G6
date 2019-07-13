@@ -35,7 +35,7 @@ public class Validation {
 
     public boolean validateLogin(String username, String password) {
         User userObject = databaseHelper.getUser(username);
-        Log.d("debug", "debug2");
+
         if (username.isEmpty() || password.isEmpty()) {
             return false;
         } else {
