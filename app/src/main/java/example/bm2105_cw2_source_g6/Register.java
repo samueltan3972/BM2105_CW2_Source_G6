@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,7 +51,7 @@ public class Register extends AppCompatActivity {
 
         if(validate.InputDataofResgister(user,
                 passwords,contacts)){
-            Intent intent = new Intent(this, Signup.class);
+            Intent intent = new Intent(this, Signin.class);
             startActivity(intent);
 
         } else {

@@ -38,14 +38,14 @@
         >
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/btnSignup"
+            android:id="@+id/btnSignin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:bufferType="normal"
-            android:onClick="signup"
-            android:text="Sign Up"
+            android:onClick="signin"
+            android:text="Sign In"
             android:textColor="@color/white"/>
 
         <info.hoang8f.widget.FButton
