@@ -46,6 +46,8 @@ public class EdittPage extends AppCompatActivity {
     }
 
     public void Submit(View view) {
+        String contact = mEditContact.getText().toString();
+        databaseHelper.EditContact(contact);
         mSubmitPersonal.setEnabled(false);
         mEditContact.setEnabled(false);
     }
