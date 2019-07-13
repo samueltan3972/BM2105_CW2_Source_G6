@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BM2105_CW2_Source_G6</string>
+    <string name="app_name">Inti Cafe</string>
     <string name="title_activity_content_home">content_home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -18,4 +18,5 @@
     <string name="cart">Cart</string>
     <string name="orders">Orders</string>
     <string name="logout">Log out</string>
+    <string name="edit_profile">Edit profile</string>
 </resources>

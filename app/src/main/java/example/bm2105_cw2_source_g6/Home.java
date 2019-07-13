@@ -117,7 +117,8 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_orders) {
 
         } else if(id == R.id.nav_edit_profile) {
-
+            Intent intent = new Intent(this, EdittPage.class);
+            startActivity(intent);
         } else if (id == R.id.nav_log_out) {
             logout();
         }

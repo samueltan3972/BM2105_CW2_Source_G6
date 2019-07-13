@@ -17,10 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EdittPage"/>
         <activity android:name=".Register" />
         <activity android:name=".Signin" />
+
         <activity android:name=".Home" />
+        <activity
+            android:name=".EdittPage"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme"
+            />
     </application>
 
 </manifest>

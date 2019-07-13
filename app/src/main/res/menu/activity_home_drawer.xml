@@ -26,7 +26,7 @@
             android:id="@+id/nav_edit_profile"
             android:icon="@drawable/ic_edit_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="@string/cart" />
+            android:title="@string/edit_profile" />
 
         <item
             android:id="@+id/nav_log_out"
