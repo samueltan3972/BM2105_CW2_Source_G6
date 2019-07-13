@@ -3,13 +3,12 @@ package example.bm2105_cw2_source_g6.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
 
 import example.bm2105_cw2_source_g6.Common.Common;
+import example.bm2105_cw2_source_g6.database.model.Order;
+import example.bm2105_cw2_source_g6.database.model.Product;
 import example.bm2105_cw2_source_g6.database.model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -28,6 +27,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         // create user table
         db.execSQL(User.CREATE_TABLE);
+        db.execSQL(Product.CREATE_TABLE);
+        db.execSQL(Order.CREATE_TABLE);
+
+        db.execSQL(Product.INSERT_PRODUCT);
     }
 
     // Upgrading database
