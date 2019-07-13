@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,13 +33,13 @@ public class Signup extends AppCompatActivity {
     public void submit(View view) {
         String user = musername.getText().toString();
         String passwords = mpassword.getText().toString();
-
+        Log.d("debug", "debug1");
         if(validation.validateLogin(user,passwords)){
-            Intent intent = new Intent(this, EdittPage.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, Home.class);
+//            startActivity(intent);
         } else {
-//            Toast.makeText(this, "Invalid username " +
-//                    "/ password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid username " +
+                    "/ password", Toast.LENGTH_SHORT).show();
         }
 
 
