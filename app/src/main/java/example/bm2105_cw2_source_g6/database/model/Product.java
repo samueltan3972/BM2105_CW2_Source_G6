@@ -28,12 +28,15 @@ public class Product {
     // Insert dummy product
     public static final String INSERT_PRODUCT =
             "INSERT INTO " + TABLE_NAME + "(" + COLUMN_CODE + ", " + COLUMN_NAME + ", " + COLUMN_DESCRIPTION + ", " + COLUMN_IMAGE + ", " + COLUMN_PRICE + ") "
-            + "VALUES('F001', 'Baked Stuffed Lobster', 'Bake until the lobster meat is opaque and the crumbs are crisp and golden brown', '', 45 ), "
-            + "('F002', 'Baked Stuffed Lobster', 'Bake until the lobster meat is opaque and the crumbs are crisp and golden brown', '', 45 ), "
-            + "('F003', 'Baked Stuffed Lobster', 'Bake until the lobster meat is opaque and the crumbs are crisp and golden brown', '', 45 ), "
-            + "('D001', 'Baked Stuffed Lobster', 'Bake until the lobster meat is opaque and the crumbs are crisp and golden brown', '', 45 ), "
-            + "('D002', 'Baked Stuffed Lobster', 'Bake until the lobster meat is opaque and the crumbs are crisp and golden brown', '', 45 ) "
+            + "VALUES('F001', 'Baked Stuffed Lobster', 'Bake until the lobster meat is opaque and the crumbs are crisp and golden brown', 'raw/lobster.jpg', 45 ), "
+            + "('F002', 'Braised Mushrooms and Abalone', 'Prepare this special Braised Mushrooms and Abalone for the Chinese New Year or a special occasion', 'raw/abalone.jpg', 40 ), "
+            + "('F003', 'Bird nest soup', 'The best-known use of edible birds nest is bird nest soup, a delicacy in Chinese cuisine. When dissolved in water, the birds nests have a gelatinous texture used for soup or sweet soup (tong sui).', 'raw/bird_nest.jpg', 30 ), "
+            + "('D001', 'Henri IV Dudognon Heritage Cognac Grande Champagne', 'Henri IV Dudognon Heritage Cognac Grande Champagne is a cognac named in honor of Henri IV. It is also called the DNA of all Cognac. It was first produced in 1776 and aged in oak barrels for 100 years.', 'raw/champagne.jpg', 80 ), "
+            + "('D002', 'Dalmore 62', 'It is well known that scotch whisky, as well as being a fine drink, holds increasing allure as an investment, and the value is steadily rising.', 'raw/whisky.jpeg', 75 ) "
             ;
+
+    // Select everything query
+    public static final String SELECT_QUERY = "SELECT * FROM " + TABLE_NAME;
 
     public Product() {
         this.product_code = "";

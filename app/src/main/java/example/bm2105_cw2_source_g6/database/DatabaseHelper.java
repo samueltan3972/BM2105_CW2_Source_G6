@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import example.bm2105_cw2_source_g6.Common.Common;
 import example.bm2105_cw2_source_g6.database.model.Order;
 import example.bm2105_cw2_source_g6.database.model.Product;
@@ -102,10 +106,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 User.COLUMN_CONTACT_NUM +" = '"+ contact +
                 "' WHERE " + User.COLUMN_ID + " = "+ Common.currentUser.getId();
 
-        Log.e("String",strSQL);
         db.execSQL(strSQL);
 
     }
 
-    
+    public ArrayList<Product> getProduct(){
+        ArrayList<Product> productList = new ArrayList<Product>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(Product.SELECT_QUERY, null);
+        cursor.moveToFirst();
+
+        Product product;
+
+        if (cursor.getCount() > 0) {
+            do {
+                product = new Product(
+                    cursor.getString(cursor.getColumnIndex(Product.COLUMN_CODE)),
+                    cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
+                    cursor.getString(cursor.getColumnIndex(Product.COLUMN_DESCRIPTION)),
+                    cursor.getString(cursor.getColumnIndex(Product.COLUMN_IMAGE)),
+                    cursor.getDouble(cursor.getColumnIndex(Product.COLUMN_PRICE))
+                );
+
+                productList.add(product);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return productList;
+    }
+
+    public void placeOrder(String customer_name, String order_detail, double total_price){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+
+        values.put(Order.COLUMN_CUSTOMER_NAME, customer_name);
+        values.put(Order.COLUMN_ORDER_DETAIL, order_detail);
+        values.put(Order.COLUMN_TOTAL_PRICE, total_price);
+        values.put(Order.COLUMN_DATETIME, dateFormat.format(date));
+
+        // insert row
+        db.insert(Order.TABLE_NAME, null, values);
+
+        // close db connection
+        db.close();
+    }
 }
