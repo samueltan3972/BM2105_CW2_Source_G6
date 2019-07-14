@@ -6,12 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.google.gson.Gson;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import example.bm2105_cw2_source_g6.Common.Common;
 import example.bm2105_cw2_source_g6.database.model.Order;
+import example.bm2105_cw2_source_g6.database.model.OrderDetail;
 import example.bm2105_cw2_source_g6.database.model.Product;
 import example.bm2105_cw2_source_g6.database.model.User;
 
@@ -158,4 +161,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // close db connection
         db.close();
     }
+
+    public ArrayList<Order> getOrder(){
+
+        ArrayList<Order> orderList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(Order.SELECT_QUERY,
+                null);
+        Gson gson = new Gson();
+
+        Order order;
+        ArrayList<OrderDetail> arrayList;
+        if (cursor.getCount() > 0) {
+            do {
+
+               String json= cursor.getString(cursor.getColumnIndex(Order.COLUMN_ORDER_DETAIL));
+                 arrayList = gson.fromJson(json, ArrayList.class);
+                order = new Order(
+                        cursor.getInt(Integer.valueOf(cursor.getString(cursor.getColumnIndex(Order.COLUMN_ID)))),
+                        cursor.getString(cursor.getColumnIndex(Order.COLUMN_CUSTOMER_NAME)),
+                        arrayList,
+                        cursor.getDouble((Integer.valueOf(cursor.getString(cursor.getColumnIndex(Order.COLUMN_TOTAL_PRICE))))),
+                        cursor.getString(cursor.getColumnIndex(Order.COLUMN_DATETIME)),
+                        cursor.getString(cursor.getColumnIndex(Order.COLUMN_REVIEW))
+
+                );
+
+                orderList.add(order);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return orderList;
+
+    }
+
 }

@@ -3,7 +3,6 @@ package example.bm2105_cw2_source_g6;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -19,7 +18,6 @@ import android.view.View;
 
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -29,7 +27,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
-import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -326,7 +323,7 @@ public class Home extends AppCompatActivity
             Intent intent = new Intent(this, CartView.class);
             startActivity(intent);
         } else if (id == R.id.nav_orders) {
-            Intent intent = new Intent(this, Order.class);
+            Intent intent = new Intent(this, OrderView.class);
             startActivity(intent);
         } else if(id == R.id.nav_edit_profile) {
             Intent intent = new Intent(this, EdittPage.class);

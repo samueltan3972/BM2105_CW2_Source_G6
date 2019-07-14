@@ -40,7 +40,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Order"
+            android:name=".OrderView"
             android:parentActivityName=".Home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>

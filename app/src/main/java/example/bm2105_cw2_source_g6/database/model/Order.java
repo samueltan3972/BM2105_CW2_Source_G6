@@ -1,5 +1,9 @@
 package example.bm2105_cw2_source_g6.database.model;
 
+import java.util.ArrayList;
+
+import example.bm2105_cw2_source_g6.Common.Common;
+
 public class Order {
     public static final String TABLE_NAME = "orders";
 
@@ -9,10 +13,14 @@ public class Order {
     public static final String COLUMN_TOTAL_PRICE = "order_total_price";
     public static final String COLUMN_DATETIME = "order_datetime";
     public static final String COLUMN_REVIEW = "order_review";
+    public static final String SELECT_QUERY =
+            "SELECT * FROM " + TABLE_NAME + " WHERE "
+                    +COLUMN_CUSTOMER_NAME + " = "
+                    + Common.currentUser.getUserName();
 
     private int order_id;
     private String customer_name;
-    private String order_details;
+    private ArrayList<OrderDetail> order_details;
     private double order_total_price;
     private String order_datetime;
     private String order_review;
@@ -31,13 +39,13 @@ public class Order {
     public Order() {
         this.order_id = 0;
         this.customer_name = "";
-        this.order_details = "";
+        this.order_details = new ArrayList<OrderDetail>();
         this.order_total_price = 0;
         this.order_datetime = "";
         this.order_review = "";
     }
 
-    public Order(int order_id, String customer_name, String order_details, double order_total_price, String order_datetime, String order_review) {
+    public Order(int order_id, String customer_name, ArrayList<OrderDetail> order_details, double order_total_price, String order_datetime, String order_review) {
         this.order_id = order_id;
         this.customer_name = customer_name;
         this.order_details = order_details;
@@ -62,11 +70,11 @@ public class Order {
         this.customer_name = customer_name;
     }
 
-    public String getOrder_details() {
+    public ArrayList<OrderDetail> getOrder_details() {
         return order_details;
     }
 
-    public void setOrder_details(String order_details) {
+    public void setOrder_details(ArrayList<OrderDetail> order_details) {
         this.order_details = order_details;
     }
 
