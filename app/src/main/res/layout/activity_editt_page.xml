@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:id="@+id/editcontact1"
+                android:inputType="phone"
                 android:singleLine="true"
                 />
 
