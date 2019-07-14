@@ -15,8 +15,8 @@ public class Order {
     public static final String COLUMN_REVIEW = "order_review";
     public static final String SELECT_QUERY =
             "SELECT * FROM " + TABLE_NAME + " WHERE "
-                    +COLUMN_CUSTOMER_NAME + " = "
-                    + Common.currentUser.getUserName();
+                    +COLUMN_CUSTOMER_NAME + " = '"
+                    + Common.currentUser.getUserName() + "'";
 
     private int order_id;
     private String customer_name;

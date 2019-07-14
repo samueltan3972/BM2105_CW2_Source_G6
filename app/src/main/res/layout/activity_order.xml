@@ -31,7 +31,7 @@
             android:textAlignment="center"
             android:textSize="18dp"
             android:textColor="@color/white"
-            android:text="There's no item in order list yet" />
+            android:text="You havaen't make any order yet" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_orderlist"

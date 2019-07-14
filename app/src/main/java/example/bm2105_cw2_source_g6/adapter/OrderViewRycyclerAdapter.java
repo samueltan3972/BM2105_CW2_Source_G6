@@ -34,12 +34,17 @@ public class OrderViewRycyclerAdapter extends RecyclerView.Adapter<OrderViewHold
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return null;
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.order_item, parent, false);
+        OrderViewHolder vh = new OrderViewHolder(v);
+
+        return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-
+        holder.order_id_text.setText("#" + orderlist.get(position).getOrder_id());
+        holder.order_datetime_text.setText(orderlist.get(position).getOrder_datetime());
     }
 
     @Override
