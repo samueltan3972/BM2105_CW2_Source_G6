@@ -14,6 +14,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import example.bm2105_cw2_source_g6.Common.Common;
+import example.bm2105_cw2_source_g6.database.model.Cart;
 import gr.net.maroulis.library.EasySplashScreen;
 
 public class SplashScreen extends AppCompatActivity {
@@ -25,6 +27,9 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        // Init the cart object
+        Common.cart = new Cart();
 
         logo = (ImageView) findViewById(R.id.imageViewsplash);
         tv = (TextView) findViewById (R.id.tvINTI);

@@ -29,7 +29,7 @@ public class CartViewRecyclerAdapter extends RecyclerView.Adapter<CartViewHolder
 
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cart_item, parent, false);
-        CartViewHolder vh = new CartViewHolder(v);
+        CartViewHolder vh = new CartViewHolder(v, context);
 
         return vh;
     }

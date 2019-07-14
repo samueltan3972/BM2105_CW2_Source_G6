@@ -32,11 +32,40 @@
             android:textColor="@color/white"
             android:text="There's no item in cart yet" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_cart"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:scrollbars="vertical" />
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/cart_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:text="Total: RM" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btn_placeOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="placeOrder"
+            android:text="Place order"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

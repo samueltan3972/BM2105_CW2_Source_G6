@@ -1,11 +1,13 @@
 package example.bm2105_cw2_source_g6.database.model;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import example.bm2105_cw2_source_g6.CartView;
 import example.bm2105_cw2_source_g6.Common.Common;
 import example.bm2105_cw2_source_g6.database.DatabaseHelper;
 
@@ -17,13 +19,15 @@ public class Cart {
     }
 
     public void addToCart(Product product, int quantity){
-//        for(OrderDetail od : orderDetailsList){
-//            if(od.getProduct().equals(product)){
-//                od.addQuantity(quantity);
-//                return ;
-//            }
-//        }
-        orderDetailsList.add(new OrderDetail(product, quantity));
+        for(OrderDetail od : orderDetailsList){
+            if(od.getProduct().equals(product)){
+                od.addQuantity(quantity);
+                return ;
+            }
+        }
+
+        OrderDetail od2 = new OrderDetail(product, quantity);
+        orderDetailsList.add(od2);
     }
 
     public void removeItem(int position){
@@ -31,9 +35,15 @@ public class Cart {
     }
 
     public void setItemQuantity(String product_name, int quantity){
-        for(OrderDetail od : orderDetailsList) {
-            if (od.getProduct().getProduct_name().equals(product_name)) {
-                od.setQuantity(quantity);
+        for(int i = 0; i < orderDetailsList.size(); i++) {
+            if (orderDetailsList.get(i).getProduct().getProduct_name().equals(product_name)) {
+                if(quantity == 0){
+                    orderDetailsList.remove(i);
+                    CartView.activity.recreate();
+                } else {
+                    orderDetailsList.get(i).setQuantity(quantity);
+                }
+
                 return ;
             }
         }
@@ -57,6 +67,8 @@ public class Cart {
         String json = gson.toJson(orderDetailsList);
 
         databaseHelper.placeOrder(Common.currentUser.getUserName(), json, this.calcTotalPrice());
+
+        orderDetailsList.clear();
     }
 
     public int getCartItemNum(){
