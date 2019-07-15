@@ -37,6 +37,7 @@ public class OrderView extends AppCompatActivity {
                  "open-sans-extrabold.ttf"));
 
         databaseHelper = new DatabaseHelper(this);
+
         orderList = databaseHelper.getOrder();
 
         if(orderList.size() != 0)

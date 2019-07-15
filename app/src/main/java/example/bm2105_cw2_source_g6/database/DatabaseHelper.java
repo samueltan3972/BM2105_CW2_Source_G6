@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -170,24 +171,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(Order.SELECT_QUERY,
                 null);
+        cursor.moveToFirst();
         Gson gson = new Gson();
+        Double d;
 
         Order order;
         ArrayList<OrderDetail> arrayList;
+
         if (cursor.getCount() > 0) {
             do {
 
                String json= cursor.getString(cursor.getColumnIndex(Order.COLUMN_ORDER_DETAIL));
                  arrayList = gson.fromJson(json, ArrayList.class);
+                 d = Double.parseDouble(cursor.getString(cursor.getColumnIndex(Order.COLUMN_TOTAL_PRICE)));
+
                 order = new Order(
                         cursor.getInt(Integer.valueOf(cursor.getString(cursor.getColumnIndex(Order.COLUMN_ID)))),
                         cursor.getString(cursor.getColumnIndex(Order.COLUMN_CUSTOMER_NAME)),
                         arrayList,
-                        cursor.getDouble((Integer.valueOf(cursor.getString(cursor.getColumnIndex(Order.COLUMN_TOTAL_PRICE))))),
+                        d,
                         cursor.getString(cursor.getColumnIndex(Order.COLUMN_DATETIME)),
                         cursor.getString(cursor.getColumnIndex(Order.COLUMN_REVIEW))
 
                 );
+
 
                 orderList.add(order);
             } while (cursor.moveToNext());
