@@ -1,0 +1,3 @@
+# BM2105_CW2_Source_G6
+This is supposed to be INTI Diploma Android Assignment, but what the hell have I done...
+Man, what the hell have I done?????
